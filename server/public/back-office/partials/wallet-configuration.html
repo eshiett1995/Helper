@@ -1,0 +1,59 @@
+<!-- Breadcrumb-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">Home</li>
+    <li class="breadcrumb-item">
+        <a href="#">Admin</a>
+    </li>
+    <li class="breadcrumb-item active">Dashboard</li>
+    <!-- Breadcrumb Menu-->
+    <li class="breadcrumb-menu d-md-down-none">
+        <div class="btn-group" role="group" aria-label="Button group">
+            <a class="btn" href="#">
+                <i class="icon-speech"></i>
+            </a>
+            <a class="btn" href="">
+                <i class="icon-graph"></i>  Dashboard</a>
+            <a class="btn" href="#">
+                <i class="icon-settings"></i>  Settings</a>
+        </div>
+    </li>
+</ol>
+<div class="container-fluid" id="update-wallet-configuration">
+    <div class="animated fadeIn">
+
+
+        <div class="row">
+
+            <div class="col-sm-6">
+
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Wallet Configurations</strong>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label >Minimum Wallet Balance</label>
+                            <input class="form-control" data-bind="textInput: walletConfiguration.minimumWalletBalance" type="number" placeholder="Enter minimum wallet balance">
+                        </div>
+                        <div class="form-group">
+                            <label>Maintenance Fee</label>
+                            <input class="form-control" data-bind="textInput: walletConfiguration.maintenanceFee" type="number" placeholder="Enter maintenance fee">
+                        </div>
+                        <div class="form-group">
+                            <label>SMS Charge Fee</label>
+                            <input class="form-control" data-bind="textInput: walletConfiguration.smsChargeFee" type="number" placeholder="Enter SMS Charge fee">
+                        </div>
+
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-sm btn-primary"  data-bind="click: updateWalletConfiguration">
+                            <i class="fa fa-dot-circle-o"></i> Submit</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.row-->
+
+    </div>
+</div>
