@@ -11,8 +11,18 @@ let orphanageHomeSchema = new Schema({
     mobile:Number,
     email: String,
     noOfChildren: Number,
-    needs : [{type: Schema.Types.ObjectId, ref: 'need'}]
-
+    needs : [{type: Schema.Types.ObjectId, ref: 'need'}],
+    location: {
+        type: {
+            type: String,
+            enum: ['Point'],
+            required: true
+        },
+        coordinates: {
+            type: [Number],
+            required: true
+        }
+    }
 });
 
 let orphanageODM = mongoose.model('orphanage home', orphanageHomeSchema);
@@ -81,4 +91,27 @@ exports.getAllOrphanageHomes = function (callback) {
     });
 };
 
+
+exports.getAllOrphanageHomesByMaxDistance = function (longitude, latitude, distance,  callback) {
+    orphanageODM.find({
+        location: {
+            $near: {
+                $maxDistance: distance,
+                $geometry: {
+                    type: "Point",
+                    coordinates: [longitude, latitude]
+                }
+            }
+        }
+    }).find((error, results) => {
+        callback(error, results);
+    });
+};
+
+
+exports.deleteById = function (id, callback) {
+    orphanageODM.findOneAndDelete({_id: id}, function (err, deletedGame) {
+        callback(err, deletedGame);
+    });
+};
 

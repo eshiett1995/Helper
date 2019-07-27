@@ -1,3 +1,6 @@
+
+
+
 let createError = require('http-errors');
 let express = require('express');
 let path = require('path');
@@ -5,6 +8,10 @@ let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 
 let app = express();
+
+app.listen(4000, function() {
+    console.log(new Date().toISOString() + ": server started on port 4000");
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -15,6 +22,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+module.exports = app;
+
+require('./controller/back-office/switch')();
+
+require('./controller/back-office/controllers/v1/login-controller')();
+require('./controller/back-office/controllers/v1/orphanage-home-controller')();
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -32,4 +48,3 @@ app.use(function(err, req, res, next) {
     res.render('error');
 });
 
-module.exports = app;

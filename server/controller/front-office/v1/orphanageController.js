@@ -1,4 +1,3 @@
-let JwtUtils = require('./../../../../utility/jwtUtils');
 
 const jwt  = require('jsonwebtoken');
 
@@ -6,7 +5,7 @@ let app = require('./../../../app');
 
 let orphanageODM = require('./../../../odm/orphanageHomeODM');
 
-module.exports = function(expressApp) {
+module.exports = function() {
 
     let backOfficeLoginControllerV1Routes = {};
 
@@ -63,12 +62,33 @@ module.exports = function(expressApp) {
 
                 }else{
                     res.status(200).send(orphanageHomes);
+                }
+            })
+
+        }catch(error){
+
+            res.status(500);
+        }
+    });
+
+    app.get('/api/orphanage-home/query', function(req, res) {
+
+        try{
+
+            orphanageODM.getAllOrphanageHomesByMaxDistance(req.query.longitude, req.query.latitude,  2000,function (error, orphanageHome) {
+
+                if(error){
+                    res.status(500);
+
+                }else{
+                    res.status(200).send(orphanageHome);
 
                 }
             })
 
         }catch(error){
 
+            console.log(error);
             res.status(500);
         }
     });

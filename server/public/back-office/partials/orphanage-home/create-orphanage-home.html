@@ -1,0 +1,106 @@
+<!-- Breadcrumb-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">Home</li>
+    <li class="breadcrumb-item">
+        <a href="#">Admin</a>
+    </li>
+    <li class="breadcrumb-item active">Dashboard</li>
+    <!-- Breadcrumb Menu-->
+    <li class="breadcrumb-menu d-md-down-none">
+        <div class="btn-group" role="group" aria-label="Button group">
+            <a class="btn" href="#">
+                <i class="icon-speech"></i>
+            </a>
+            <a class="btn" href="">
+                <i class="icon-graph"></i>  Dashboard</a>
+            <a class="btn" href="#">
+                <i class="icon-settings"></i>  Settings</a>
+        </div>
+    </li>
+</ol>
+<div class="container-fluid" id="create-orphanage-home">
+    <div class="animated fadeIn">
+
+
+        <div class="row">
+
+            <div class="col-sm-12">
+
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Create Orphanage Home</strong>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label >Name</label>
+                            <input class="form-control" data-bind="textInput: orphanageHome.name" type="text" placeholder="Enter a name">
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-12">
+                                <label >Address</label>
+                                <input class="form-control" data-bind="textInput: orphanageHome.address" type="text" placeholder="Enter an address">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label>Email</label>
+                                <input data-bind="textInput: orphanageHome.email" class="form-control" type="email">
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label>Mobile</label>
+                                <input data-bind="textInput: orphanageHome.mobile" class="form-control" type="tel">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-4">
+                                <label>No of children</label>
+                                <input data-bind="textInput: orphanageHome.noOfChildren" type="number" class="form-control">
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label>Latitude</label>
+                                <input data-bind="textInput: orphanageHome.coordinate.latitude" type="number" class="form-control">
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label>Longitude</label>
+                                <input data-bind="textInput: orphanageHome.coordinate.longitude" type="number" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div  class="form-group col-sm-4" style=" position: relative;
+                    cursor: pointer;">
+                                <label>Image</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="icon-cloud-upload"></i>
+                                                </span>
+                                    </div>
+                                    <input data-bind="textInput: orphanageHome.image().name" placeholder="Select the wallpaper" style="cursor: pointer;
+                        background: rgba(255, 255, 255, 1);" autocomplete="off"
+                                           class="form-control file-src" type="text" readonly/>
+                                    <input style="cursor: pointer;
+                        display: block;
+                        height: 100%;
+                        left: 0;
+                        opacity: 0 !important;
+                        position: absolute;
+                        top: 0;
+                        width: 100%;" type="file" data-bind="event: {change: fileUpload.bind()}"
+                                           required accept="image/png,image/jpg,image/jpeg">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-footer">
+                        <button id="save-button" class="ladda-button btn-primary" data-size="xs" data-style="zoom-out"  data-bind="click: saveOrphanageHome">
+                            <i class="fa fa-dot-circle-o"></i> Submit</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.row-->
+
+    </div>
+</div>

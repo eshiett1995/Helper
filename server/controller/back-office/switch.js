@@ -1,5 +1,3 @@
-let bcrypt = require('bcryptjs');
-
 let util =  require('util');
 
 const jwt  = require('jsonwebtoken');
@@ -7,6 +5,7 @@ const jwt  = require('jsonwebtoken');
 let JwtUtils = require('./../../utility/jwtUtils');
 
 let app = require('./../../backOffice');
+
 
 module.exports = function(expressApp) {
 
@@ -18,27 +17,21 @@ module.exports = function(expressApp) {
         try{
 
             let legit = jwt.verify(
-                req.cookies.gambeat,
+                req.cookies.helper,
                 JwtUtils.getPublicKey,
                 new JwtUtils.generateVerifyOptions()
             );
 
             if(legit.userType === "ADMIN"){
-
                 res.render('back-office/dashboard', { title: 'Express' });
 
             }else{
-
                 res.render('back-office/login', { title: 'Express' });
             }
 
-        }catch(err){
-
+        }catch(error){
             res.render('back-office/login', { title: 'Express' });
         }
-
-
-
     });
 
 

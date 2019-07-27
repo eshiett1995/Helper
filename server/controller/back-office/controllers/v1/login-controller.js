@@ -6,24 +6,24 @@ let JwtUtils = require('./../../../../utility/jwtUtils');
 
 const jwt  = require('jsonwebtoken');
 
-let AdminODM = require('./../../../../odm/adminODM');
+let adminODM = require('./../../../../odm/adminODM');
+
+let app = require('./../../../../backOffice');
 
 module.exports = function(expressApp) {
 
     let backOfficeLoginControllerV1Routes = {};
 
-    expressApp.post('/api/back-office/login', function(req, res) {
+    app.post('/api/back-office/login', function(req, res) {
 
-        AdminODM.findByUsernameOrEmail(req.body.userName, function (error, foundAdmin) {
+        adminODM.findByUsername(req.body.userName, function (error, foundAdmin) {
 
             let responseModel = {};
 
             if(error){
 
                 responseModel.isSuccessful = false;
-
                 responseModel.responseMessage = "A database error occurred while searching for admin";
-
                 res.status(500).send(responseModel);
 
 
@@ -60,16 +60,12 @@ module.exports = function(expressApp) {
                         }
 
                         // Set cookie
-                        res.cookie('gambeat', responseModel.jwtToken, options);
-
+                        res.cookie('helper', responseModel.jwtToken, options);
                         res.status(200).send(responseModel);
-
                     }else{
 
                         responseModel.isSuccessful = false;
-
                         responseModel.responseMessage = "username/password is incorrect";
-
                         res.status(404).send(responseModel);
 
                     }

@@ -3,15 +3,10 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let needSchema = new Schema({
-
     dateCreated : { type: Date, default: Date.now },
-
     detail : String,
-
     quantity : Number,
-
     deliverer : [{}]
-
 });
 
 let needODM = mongoose.model('need', needSchema);
